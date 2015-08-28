@@ -1,0 +1,106 @@
+#!/bin/sh
+
+PIDFILE=~/restream_demo.pid
+
+STREAM1=rtsp://213.110.200.154:554/live/main
+STREAM2=rtsp://213.110.200.154:754/live/main
+STREAM3=rtsp://213.110.200.154:954/live/main
+STREAM4=rtsp://213.110.200.154:1054/live/main
+STREAM5=rtsp://213.110.200.154:1154/live/main
+STREAM6=rtsp://213.110.200.154:1254/live/main
+STREAM7=rtsp://213.170.88.6:554/live/main
+STREAM8=rtsp://213.170.88.6:654/live/main
+#STREAM9=rtsp://ADMIN:1234@109.188.132.127:554/live/main
+STREAM9=rtsp://ADMIN:1234@91.233.168.162:554/live/main
+#STREAM10=rtsp://ADMIN:1234@109.188.132.127:654/live/main
+STREAM10=rtsp://ADMIN:1234@91.233.168.162:654/live/main
+STREAM11=rtsp://213.170.88.6:754/live/main
+#STREAM12=rtsp://ADMIN:1234@109.188.132.127:754/live/main
+STREAM12=rtsp://ADMIN:1234@91.233.168.162:754/live/main
+CAMFILE="cam1_`date +%F_%s`.ts"
+
+if [ -f $PIDFILE ]; then
+        CURRENT=`cat $PIDFILE`
+        kill -0 $CURRENT && exit;
+fi
+
+echo $$ > $PIDFILE
+
+
+
+cat <<EOF > ./config.vlm
+new cam1 broadcast enabled
+setup cam1 input "$STREAM1"
+setup cam1 output "#std{access=livehttp{seglen=5,delsegs=true,numsegs=15,index=/var/www/stream1/o2_sily.m3u8,index-url=http://54.213.144.162/stream1/video-######.ts},mux=ts{use-key-frames},dst=/var/www/stream1/video-######.ts}"
+control cam1 play
+
+new cam2 broadcast enabled
+setup cam2 input "$STREAM2"
+setup cam2 output "#std{access=livehttp{seglen=2,delsegs=true,numsegs=15,index=/var/www/stream2/o2_sily.m3u8,index-url=http://54.213.144.162/stream2/video-######.ts},mux=ts{use-key-frames},dst=/var/www/stream2/video-######.ts}"
+control cam2 play
+
+new cam3 broadcast enabled
+setup cam3 input "$STREAM3"
+setup cam3 output "#std{access=livehttp{seglen=5,delsegs=true,numsegs=15,index=/var/www/stream3/o2_sily.m3u8,index-url=http://54.213.144.162/stream3/video-######.ts},mux=ts{use-key-frames},dst=/var/www/stream3/video-######.ts}"
+control cam3 play
+
+#new cam11 broadcast enabled
+#setup cam11 input "$STREAM1"
+#setup cam11 output "#std{access=file,mux=ts,dst=/home/recoder/video/$CAMFILE}"
+#control cam11 play
+
+new cam4 broadcast enabled
+setup cam4 input "$STREAM4"
+setup cam4 output "#std{access=livehttp{seglen=5,delsegs=true,numsegs=15,index=/var/www/stream4/o2_sily.m3u8,index-url=http://54.213.144.162/stream4/video-######.ts},mux=ts{use-key-frames},dst=/var/www/stream4/video-######.ts}"
+control cam4 play
+
+new cam5 broadcast enabled
+setup cam5 input "$STREAM5"
+setup cam5 output "#std{access=livehttp{seglen=5,delsegs=true,numsegs=15,index=/var/www/stream5/o2_sily.m3u8,index-url=http://54.213.144.162/stream5/video-######.ts},mux=ts{use-key-frames},dst=/var/www/stream5/video-######.ts}"
+control cam5 play
+
+new cam6 broadcast enabled
+setup cam6 input "$STREAM6"
+setup cam6 output "#std{access=livehttp{seglen=5,delsegs=true,numsegs=15,index=/var/www/stream6/o2_sily.m3u8,index-url=http://54.213.144.162/stream6/video-######.ts},mux=ts{use-key-frames},dst=/var/www/stream6/video-######.ts}"
+control cam6 play
+
+new cam7 broadcast enabled
+setup cam7 input "$STREAM7"
+setup cam7 output "#std{access=livehttp{seglen=5,delsegs=true,numsegs=15,index=/var/www/stream7/o2_serdce.m3u8,index-url=http://54.213.144.162/stream7/video-######.ts},mux=ts{use-key-frames},dst=/var/www/stream7/video-######.ts}"
+control cam7 play
+
+new cam8 broadcast enabled
+setup cam8 input "$STREAM8"
+setup cam8 output "#std{access=livehttp{seglen=5,delsegs=true,numsegs=15,index=/var/www/stream8/o2_serdce.m3u8,index-url=http://54.213.144.162/stream8/video-######.ts},mux=ts{use-key-frames},dst=/var/www/stream8/video-######.ts}"
+control cam8 play
+
+new cam9 broadcast enabled
+setup cam9 input "$STREAM9"
+setup cam9 output "#std{access=livehttp{seglen=5,delsegs=true,numsegs=15,index=/var/www/stream9/o2_serdce.m3u8,index-url=http://54.213.144.162/stream9/video-######.ts},mux=ts{use-key-frames},dst=/var/www/stream9/video-######.ts}"
+control cam9 play
+
+new cam10 broadcast enabled
+setup cam10 input "$STREAM10"
+setup cam10 output "#std{access=livehttp{seglen=5,delsegs=true,numsegs=15,index=/var/www/stream10/o2_serdce.m3u8,index-url=http://54.213.144.162/stream10/video-######.ts},mux=ts{use-key-frames},dst=/var/www/stream10/video-######.ts}"
+control cam10 play
+
+new cam11 broadcast enabled
+setup cam11 input "$STREAM11"
+setup cam11 output "#std{access=livehttp{seglen=5,delsegs=true,numsegs=15,index=/var/www/stream11/o2_serdce.m3u8,index-url=http://54.213.144.162/stream11/video-######.ts},mux=ts{use-key-frames},dst=/var/www/stream11/video-######.ts}"
+control cam11 play
+
+new cam12 broadcast enabled
+setup cam12 input "$STREAM12"
+setup cam12 output "#std{access=livehttp{seglen=5,delsegs=true,numsegs=15,index=/var/www/stream12/o2_serdce.m3u8,index-url=http://54.213.144.162/stream12/video-######.ts},mux=ts{use-key-frames},dst=/var/www/stream12/video-######.ts}"
+control cam12 play
+EOF
+
+#setup h264mux output "#transcode{width=960,height=540,fps=16,vcodec=h264,vb=600,venc=x264{aud,profile=baseline,level=30,keyint=30,ref=1}}:std{access=livehttp{seglen=5,delsegs=true,numsegs=15,index=/var/www/stream/o2_sily.m3u8,index-url=http://54.213.144.162/stream/video-######.ts},mux=ts{use-key-frames},dst=/var/www/stream/video-######.ts}}"
+
+/usr/bin/cvlc -vv --sout-keep -I telnet --telnet-host=127.0.0.1 -R \
+--udp-caching=1000 --http-caching=1000 --telnet-password=123456 \
+--vlm-conf ./config.vlm --repeat --no-ffmpeg-hurry-up --no-sout-transcode-hurry-up \
+--rt-priority --http-reconnect --sout-transcode-high-priority --loop --no-play-and-stop \
+--no-sout-audio --extraintf logger --logfile=./vlc.log \
+--network-caching=30000 --sout-mux-caching=1000 --rtsp-timeout=-1
+

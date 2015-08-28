@@ -1,0 +1,39 @@
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+
+* * * * * /usr/local/bin/startvlc
+
+*/5 * * * * /usr/local/bin/check.sh 554 cam1
+*/5 * * * * /usr/local/bin/check.sh 754 cam2
+*/5 * * * * /usr/local/bin/check.sh 954 cam3
+*/5 * * * * /usr/local/bin/check.sh 1054 cam4
+*/5 * * * * /usr/local/bin/check.sh 1154 cam5
+*/5 * * * * /usr/local/bin/check.sh 1254 cam6
+*/5 * * * * /usr/local/bin/checks.sh 554 cam7
+*/5 * * * * /usr/local/bin/checks.sh 654 cam8
+*/5 * * * * /usr/local/bin/checks.sh 754 cam11
+*/5 * * * * /usr/local/bin/checks1.sh 554 cam9
+*/5 * * * * /usr/local/bin/checks1.sh 654 cam10
+*/5 * * * * /usr/local/bin/checks1.sh 754 cam12
+
+1 1 * * * killall -9 vlc
